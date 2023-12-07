@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rrweb@latest/dist/rrweb.min.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="target">
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/rrweb@latest/dist/rrweb.min.js"></script>
+    <script>
+  // 创建一个容器元素，用于显示回放内容
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+
+  // 加载录制的 JSON 文件
+  fetch('rrweb.json')
+    .then(response => response.json())
+    .then(events => {
+        console.log(events);
+      // 创建一个 replayer 实例并播放录制的事件
+      const replayer = new rrweb.Replayer(events, container);
+      replayer.play();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+    </script>
+</body>
+
+</html>
